@@ -1,10 +1,10 @@
 import React from 'react'
-
+import { Box, Text } from '../../components'
 const Content = () => {
     return (
-        <div>
-            <h1>Content</h1>
-        </div>
+        <Box>
+            <Text>Content</Text>
+        </Box>
     )
 }
 
