@@ -26,6 +26,7 @@ const Input = ({
                 bold
                 color={isSuccess && '#0BC375'}
                 mt="10px"
+               
             >
                 <CountUp start={0} end={number} />
             </Text>
