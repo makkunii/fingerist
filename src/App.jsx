@@ -1,3 +1,10 @@
 const App = () => {
-    return <>hello</>
+    return (
+        <>
+            <GlobalStyle />
+            test
+        </>
+    )
 }
+
+export default App
