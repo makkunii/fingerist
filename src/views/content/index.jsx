@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react'
 
 const Content = () => {
     return (
-          <div>
+        <div>
             <h1>Content</h1>
-          </div>
+        </div>
     )
 }
 

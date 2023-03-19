@@ -1,22 +1,26 @@
 import React from 'react'
-import {createBrowserRouter,RouterProvider} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Landing from './views/landing/'
 import Content from './views/content'
+import GlobalStyle from './theme/global.style'
 
 const router = createBrowserRouter([
     {
-      path: "/landing",
-      element: <Landing />,
+        path: '/',
+        element: <Landing />,
     },
     {
-        path: "/content",
+        path: '/content',
         element: <Content />,
-      },
-  ]);
+    },
+])
 
 const App = () => {
     return (
-        <RouterProvider router={router} />
+        <>
+            <GlobalStyle />
+            <RouterProvider router={router} />
+        </>
     )
 }
 
