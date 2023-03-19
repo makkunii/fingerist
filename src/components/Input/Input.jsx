@@ -8,7 +8,7 @@ const Input = ({
     isSuccess,
     number = 0,
     numberSize = '.8rem',
-    numberFontWeight = 'bolder',
+    numberFontWeight = 'bold',
     ...props
 }) => {
     const { padding, width, ...rest } = props
@@ -23,7 +23,7 @@ const Input = ({
             />
             <Text
                 textAlign="center"
-                bold
+                numberFontWeight={numberFontWeight}
                 color={isSuccess && '#0BC375'}
                 mt="10px"
                 fontSize={numberSize}
