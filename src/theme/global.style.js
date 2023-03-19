@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components'
-import overlayBg from '../image/overlayBg.png'
 
 const GlobalStyle = createGlobalStyle`
   * {
