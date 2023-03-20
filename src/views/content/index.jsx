@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 const Content = () => {
     
-    const [number, setnumber] = useState(null)
+    const [number, setnumber] = useState()
     const [ROUND, setRound] = useState(null)
 
     const generateGuessWord = async () => {
@@ -21,7 +21,19 @@ const Content = () => {
             setRound(randomObject);
 
             const letterIndexes = {}
-            randomObject.sentence.split('').map((el, index) => {
+
+            // Makkuniii was here
+            const splitSentence = randomObject.sentence.split(''); 
+
+            //remove spaces
+            const filtered = splitSentence.filter((el) => {
+                return el !== ' ';
+              });
+            //return unique value only remove duplicate letters
+            const unique = filtered.filter((value, index, array) => array.indexOf(value) === index);
+            
+            //map the unique letters
+            unique.map((el, index) => {
                 letterIndexes[el] = index + 1
             })
 
@@ -35,7 +47,7 @@ const Content = () => {
     }
    
 
-    console.log(number)
+    // console.log(number)
 
     useEffect(() => {
         if(!ROUND) {
@@ -48,26 +60,27 @@ const Content = () => {
     return (
         <Flex justifyContent="center">
             <Box>   
-                <Text textAlign="center">Guess The Sentence</Text>
+                <Text textAlign="center">GUESS THE SENTENCE</Text>
                 <Grid
                     gap="20px"
-                    gridTemplateColumns="repeat(auto-fit, minmax(30px, 1fr))"
-                    maxWidth="340px"
+                    gridTemplateColumns="repeat(auto-fit, minmax(20px, 1fr))"
+                    maxWidth="530px"
                     width="100%"
                     mt="1.3rem"
                     mx="auto"
                 >
                     {(ROUND?.sentence)?.split('')?.map((el, index) => {
                         return el === ' ' ? (
-                            <Box p="10px"/>
+                            <Box/>
                         ) : (
                             <Input
                                 defaultValue=""
-                                placeholder={el}
+                                placeholder="?"
                                 number={number[el]}
                                 height="40px"
                                 fontSize="10px"
                                 numberSize="10px"
+                                width="40px"
                                 key={index}
                             />
             
@@ -76,20 +89,28 @@ const Content = () => {
                 </Grid>
 
                 <Flex flexDirection="column">
-                    <Flex justifyContent="center" gap="15px" mt="1rem" flexDirection="column">
+                    <Flex justifyContent="center" gap="px" mt="1rem" flexDirection="column">
                             
                         {
                             ROUND?.words_list?.map( (e, i) => {
                                 return (
-                                    <Flex gap="1rem" justifyContent="space-between" width="100%">
-                                        <Text mt="1rem" key={i}>
+                                    <Grid 
+                                    gap="5px"
+                                    gridTemplateColumns="repeat(auto-fit, minmax(40px, 1fr))"
+                                    width="500px">
+                                       <Flex justifyContent="end">
+                                       <Text mt="1rem" key={i}>
                                             {e.description}
                                         </Text>
-
-                                        {e?.word?.split('').map((el, index) => {
+                                       </Flex>
+                                      
+                                      <Flex  gap="5px"
+                                      justifyContent="start"
+                                    width="100px">
+                                      {e?.word?.split('').map((el, index) => {
                                             return (
                                                 <Input
-                                                    placeholder={el}
+                                                    placeholder="?"
                                                     number={number[el]}
                                                     height="40px"
                                                     fontSize="10px"
@@ -98,7 +119,10 @@ const Content = () => {
                                                 />
                                             )
                                         })}
-                                    </Flex>
+                                      </Flex>
+                                       
+
+                                    </Grid>
                                 )
                             })
                         }
