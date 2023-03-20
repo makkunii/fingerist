@@ -12,7 +12,7 @@ const Content = () => {
 
     const GUESS_WORD = 'Hello World'
     const WORD_LIST = "Hold"
-    const WORD_HINT = "Other term for grab"
+    const WORD_HINT = "Another term for grab"
 
     const inputs = []
 
@@ -34,7 +34,7 @@ const Content = () => {
     //     console.log(inputs);
     // } 
      useEffect (()=> { settingIndex() },[GUESS_WORD])
-     useEffect (()=> { WordListChecker() } ,[inputs])
+    //  useEffect (()=> { WordListChecker() } ,[inputs])
 
 
     return (
