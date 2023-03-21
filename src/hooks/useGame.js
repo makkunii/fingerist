@@ -27,11 +27,16 @@ const useGame = () => {
         setIsLoading(false)
     }
 
+    const restartGame = async () => {
+        resetGame()
+        await startGame()
+    }
+
     return {
         gameSentence,
         gameWordLists,
         gameLetterNumbers,
-        resetGame,
+        restartGame,
         startGame,
         isLoading,
     }

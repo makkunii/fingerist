@@ -9,7 +9,7 @@ const Content = () => {
         gameSentence,
         gameWordLists,
         gameLetterNumbers,
-        resetGame,
+        restartGame,
         isLoading,
         startGame,
     } = useGame()
