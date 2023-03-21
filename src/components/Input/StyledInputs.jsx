@@ -34,7 +34,7 @@ const StyledInputs = styled.input`
     ${({ fontSize }) => fontSize && `font-size: ${fontSize};`}
     outline: none;
     padding: ${({ padding }) => padding || '5px'};
-    width: ${({ padding, width }) => width || `${(padding || 7) * 5}`}px;
+    width: ${({ padding, width }) => width || `${(padding || 10) * 5}`}px;
 
     ${({ transparent }) =>
         transparent &&
