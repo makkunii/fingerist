@@ -63,6 +63,7 @@ const Content = () => {
                                         <InputWords
                                             word={e.word}
                                             roundsNumbers={gameLetterNumbers}
+                                            index={i}
                                         />
                                     </Flex>
                                 </Grid>

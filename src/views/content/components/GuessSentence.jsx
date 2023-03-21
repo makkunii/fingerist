@@ -8,7 +8,7 @@ const GuessSentence = ({ sentence, roundsNumbers, ...props }) => {
             <Input
                 defaultValue=""
                 placeholder="?"
-                number={roundsNumbers[el]}
+                number={roundsNumbers[el].index}
                 height="40px"
                 fontSize="10px"
                 numberSize="10px"
