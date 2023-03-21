@@ -1,31 +1,22 @@
-import React, { useEffect, useMemo } from 'react'
-import { Box, Flex, Grid, Input, Text } from '../../components'
-import { useState } from 'react'
-import { generateGuessWord, generateLetterNumbers } from '../../api'
+import React, { useEffect } from 'react'
+import { Box, Flex, Grid, Text } from '../../components'
 import InputWords from './components/InputWords'
 import GuessSentence from './components/GuessSentence'
+import useGame from '../../hooks/useGame'
 
 const Content = () => {
-    const [rounds, setRound] = useState({
-        numbers: null,
-        words_list: null,
-        sentence: null,
-    })
+    const {
+        gameSentence,
+        gameWordLists,
+        gameLetterNumbers,
+        resetGame,
+        isLoading,
+        startGame,
+    } = useGame()
 
     useEffect(() => {
-        const _ = async () => {
-            const apiResult = await generateGuessWord()
-            const letterIndexes = generateLetterNumbers(apiResult)
-
-            setRound({
-                numbers: letterIndexes,
-                sentence: apiResult.sentence,
-                words_list: apiResult.words_list,
-            })
-        }
-
-        if (!rounds?.sentence || !rounds?.words_list) _()
-    }, [rounds])
+        if (!gameWordLists || !gameWordLists) startGame()
+    }, [gameSentence, gameWordLists])
 
     return (
         <Flex justifyContent="center">
@@ -40,8 +31,8 @@ const Content = () => {
                     mx="auto"
                 >
                     <GuessSentence
-                        sentence={rounds.sentence}
-                        roundsNumbers={rounds.numbers}
+                        sentence={gameSentence}
+                        roundsNumbers={gameLetterNumbers}
                     />
                 </Grid>
 
@@ -52,7 +43,7 @@ const Content = () => {
                         mt="1rem"
                         flexDirection="column"
                     >
-                        {rounds?.words_list?.map((e, i) => {
+                        {gameWordLists?.map((e, i) => {
                             return (
                                 <Grid
                                     gap="5px"
@@ -71,7 +62,7 @@ const Content = () => {
                                     >
                                         <InputWords
                                             word={e.word}
-                                            roundsNumbers={rounds.numbers}
+                                            roundsNumbers={gameLetterNumbers}
                                         />
                                     </Flex>
                                 </Grid>
