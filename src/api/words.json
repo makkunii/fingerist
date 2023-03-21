@@ -1,0 +1,100 @@
+{
+    "data" : [
+        {
+            "sentence" : "HELLO WORLD",
+            "words_list" : [
+                {
+                    "word" : "OWL",
+                    "description" : "Animal Associated with night"
+                },
+                {
+                    "word" : "HOLD",
+                    "description" : "Another term for grab"
+                },
+                {
+                    "word" : "WHOLE",
+                    "description" : "If you complete the half"
+                },
+                {
+                    "word" : "ROLL",
+                    "description" : "I want some Spring__"
+                }
+            ]
+        },
+        {
+            "sentence" : "FOOD IS LIFE",
+            "words_list" : [
+                {
+                    "word" : "ODD",
+                    "description" : "When something is not even"
+                },
+                {
+                    "word" : "LIE",
+                    "description" : "Guys are good at it"
+                },
+                {
+                    "word" : "FOOL",
+                    "description" : "sounds like swimming"
+                },
+                {
+                    "word" : "SIDE",
+                    "description" : "UP____DOWN"
+                }
+
+            ]
+        },
+        {
+            "sentence" : "STAYING LATE AT NIGHT IS THE BEST",
+            
+            "words_list" : [
+                
+                {
+                    "word" : "STEALING",
+                    "description" : "Your bestfriend is good at it"
+                },
+                {
+                    "word" : "HELL",
+                    "description" : "When it's Super hot"
+                },
+                {
+                    "word" : "BEAT",
+                    "description" : "Follow the ___ of music"
+                },
+                {
+                    "word" : "YES",
+                    "description" : "Do want Money?"
+                }
+            ]
+        },
+        {
+            "sentence" : "WILL YOU BE MY GIRLFRIEND",
+            
+            "words_list" : [
+                {
+                    "word" : "WORLD",
+                    "description" : "You mean the ___ to me"
+                },
+                {
+                    "word" : "YIELD",
+                    "description" : "to surrender to you"
+                },
+                {
+                    "word" : "BUY",
+                    "description" : "I could ___ you flowers"
+                },
+                {
+                    "word" : "ME",
+                    "description" : "Your future husband"
+                },
+                {
+                    "word" : "FIND",
+                    "description" : "look for something"
+                },
+                {
+                    "word" : "GONE",
+                    "description" : "something missing"
+                }
+            ]
+        }
+    ]
+}
