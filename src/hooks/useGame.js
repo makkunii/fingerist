@@ -28,9 +28,8 @@ const useGame = () => {
     }
 
     const restartGame = async () => {
-        setIsLoading(true)
         resetGame()
-        startGame()
+        await startGame()
     }
 
     return {
