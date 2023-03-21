@@ -3,6 +3,7 @@ import { Box, Flex, Grid, Input, Text } from '../../components'
 import { useState } from 'react'
 import { generateGuessWord, generateLetterNumbers } from '../../api'
 import InputWords from './components/InputWords'
+import GuessSentence from './components/GuessSentence'
 
 const Content = () => {
     const [rounds, setRound] = useState({
@@ -38,22 +39,10 @@ const Content = () => {
                     mt="1.3rem"
                     mx="auto"
                 >
-                    {rounds?.sentence?.split('')?.map((el, index) => {
-                        return el === ' ' ? (
-                            <Box />
-                        ) : (
-                            <Input
-                                defaultValue=""
-                                placeholder="?"
-                                number={rounds?.numbers[el]}
-                                height="40px"
-                                fontSize="10px"
-                                numberSize="10px"
-                                width="40px"
-                                key={`sentence-${index}`}
-                            />
-                        )
-                    })}
+                    <GuessSentence
+                        sentence={rounds.sentence}
+                        roundsNumbers={rounds.numbers}
+                    />
                 </Grid>
 
                 <Flex flexDirection="column">
