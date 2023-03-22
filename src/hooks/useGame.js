@@ -43,6 +43,7 @@ const useGame = () => {
         isLoading,
         gameUserInputs,
         setGameUserInputs,
+        setGameLetterNumbers,
     }
 }
 

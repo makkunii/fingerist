@@ -20,13 +20,12 @@ const InputWords = ({ word, HintIndex, ...props }) => {
         })
     }
 
-
     // const checkWord = () => {
     //     if(userInputs.userInput != word) {
     //         console.log("Wrong")
     //         setwordStatus(false);
 
-    //     } 
+    //     }
     //     else {
     //         console.log("Correct")
     //         setwordStatus(true);
@@ -37,7 +36,6 @@ const InputWords = ({ word, HintIndex, ...props }) => {
     // useEffect(() => {
     //     checkWord()
     // }, [userInputs])
-   
 
     return word?.split('').map((el, i) => {
         return (
