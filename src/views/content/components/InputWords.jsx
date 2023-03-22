@@ -20,24 +20,9 @@ const InputWords = ({ word, HintIndex, ...props }) => {
         })
     }
 
-    // const checkWord = () => {
-    //     if(userInputs.userInput != word) {
-    //         console.log("Wrong")
-    //         setwordStatus(false);
-
-    //     }
-    //     else {
-    //         console.log("Correct")
-    //         setwordStatus(true);
-    //     }
-
-    // }
-
-    // useEffect(() => {
-    //     checkWord()
-    // }, [userInputs])
-
     return word?.split('').map((el, i) => {
+        const propValue = gameLetterNumbers[el]?.isFilled ? { value: el } : {}
+
         return (
             <Input
                 placeholder="?"
@@ -48,6 +33,9 @@ const InputWords = ({ word, HintIndex, ...props }) => {
                 key={`hint-field-${i}`}
                 className={`data-hint-field-${HintIndex}`}
                 onChange={() => formatValues()}
+                disabled={gameLetterNumbers[el].isFilled}
+                isSuccess={gameLetterNumbers[el].isFilled}
+                {...propValue}
                 {...props}
             />
         )

@@ -22,9 +22,55 @@ export default createReducer(initialState, (builder) =>
         .addCase(
             updateUserInputs,
             (state, { payload: { type, userInputs, index } }) => {
-                if (type === 'SENTENCE') state.userInputs.sentence = userInputs
-                if (type === 'WORDLIST')
+                if (type === 'SENTENCE') {
+                    state.userInputs.sentence = userInputs
+
+                    if (
+                        userInputs?.toUpperCase() ===
+                        state.sentence?.replaceAll(' ', '')?.toUpperCase()
+                    ) {
+                        console.log('GAME END!')
+                        let snapshot = {}
+
+                        for (const key in state.numbers) {
+                            snapshot[key] = {
+                                ...state.numbers[key],
+                                isFilled: true,
+                            }
+                        }
+
+                        state.numbers = snapshot
+                    }
+                }
+                if (type === 'WORDLIST') {
                     state.userInputs.wordlist[index] = userInputs
+
+                    if (
+                        userInputs?.toUpperCase() ===
+                        state.words_list[index]?.word
+                            ?.replaceAll(' ', '')
+                            ?.toUpperCase()
+                    ) {
+                        let snapshot = {}
+                        let splittedWord = userInputs?.toUpperCase()?.split('')
+
+                        for (const key in state.numbers) {
+                            let isFilledValue = false
+
+                            splittedWord.forEach((e) =>
+                                e === key ? (isFilledValue = true) : '',
+                            )
+                            snapshot[key] = {
+                                ...state.numbers[key],
+                                isFilled:
+                                    state.numbers[key]?.isFilled ||
+                                    isFilledValue,
+                            }
+                        }
+
+                        state.numbers = snapshot
+                    }
+                }
             },
         )
         .addCase(
