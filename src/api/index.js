@@ -28,7 +28,10 @@ export const generateLetterNumbers = (param) => {
     )
 
     unique.map((el, index) => {
-        letterIndexes[el] = index + 1
+        letterIndexes[el] = {
+            index: index + 1,
+            isFilled: false,
+        }
     })
 
     return letterIndexes

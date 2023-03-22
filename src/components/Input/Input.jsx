@@ -24,7 +24,7 @@ const Input = ({
             <Text
                 textAlign="center"
                 numberFontWeight={numberFontWeight}
-                color={isSuccess && '#0BC375'}
+                color={isSuccess ? '#0BC375' : 'black'}
                 mt="10px"
                 fontSize={numberSize}
             >

@@ -8,4 +8,6 @@ export const updateGameLettersIndex = createAction(
     'game/updateGameLettersIndex',
 )
 
+export const updateUserInputs = createAction('game/updateUserInputs')
+
 export const resetGame = createAction('game/resetGame')
