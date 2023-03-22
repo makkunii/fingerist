@@ -5,6 +5,7 @@ import {
     updateHints as updateHintsAction,
     resetGame as resetGameAction,
     updateGameLettersIndex as updateGameLettersIndexAction,
+    updateUserInputs as updateUserInputsAction,
 } from './action'
 
 export const useGame = () => {
@@ -13,6 +14,14 @@ export const useGame = () => {
     const gameSentence = useSelector((state) => state.game.sentence)
     const gameWordLists = useSelector((state) => state.game.words_list)
     const gameLetterNumbers = useSelector((state) => state.game.numbers)
+    const gameUserInputs = useSelector((state) => state.game.userInputs)
+
+    const setGameUserInputs = useCallback(
+        ({ type, userInputs, index }) => {
+            dispatch(updateUserInputsAction({ type, userInputs, index }))
+        },
+        [dispatch],
+    )
 
     const setGameSentence = useCallback(
         (newGuessSentence) => {
@@ -43,6 +52,8 @@ export const useGame = () => {
         gameSentence,
         gameWordLists,
         gameLetterNumbers,
+        gameUserInputs,
+        setGameUserInputs,
         setGameSentence,
         setGameLetterNumbers,
         setGameWordLists,

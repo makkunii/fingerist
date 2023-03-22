@@ -1,49 +1,40 @@
-import { userState, useState } from 'react'
 import { Input } from '../../../components'
+import useGame from '../../../hooks/useGame'
 
-const InputWords = ({ word, roundsNumbers, index, ...props }) => {
-    const [ userInputs, setUserInputs] = useState([])
+const InputWords = ({ word, HintIndex, ...props }) => {
+    const { gameLetterNumbers, setGameUserInputs } = useGame()
 
-    const formatValues = (id) => {
+    const formatValues = () => {
         let snapshot = []
 
-        const inputs = document?.querySelectorAll(`.data-hint-field-${id}`)
-        
-        inputs?.forEach( e => snapshot += `${e.value}`)
+        const inputs = document?.querySelectorAll(
+            `.data-hint-field-${HintIndex}`,
+        )
 
-        setUserInputs({
-            index : id,
-            userInputs : snapshot
+        inputs?.forEach((e) => (snapshot += `${e.value}`))
+
+        setGameUserInputs({
+            type: 'WORDLIST',
+            index: HintIndex,
+            userInputs: snapshot,
         })
-
     }
 
-    
-    return (
-        <>
-            {word?.split('').map((el, i) => {
-                return (
-                    <Input
-                        placeholder="?"
-                        number={roundsNumbers[el].index}
-                        height="40px"
-                        fontSize="10px"
-                        numberSize="10px"
-                        key={`hint-field-${i}`}
-                        className={`data-hint-field-${index}`}
-                        onChange={(evt) => {
-                            formatValues(index)
-                        }}
-                        {...props}
-                    />
-                )
-            })}
-        </>
-    )
-}
-
-const checkAnswer = (event, index) => {
-    console.log(event + index)
+    return word?.split('').map((el, i) => {
+        return (
+            <Input
+                placeholder="?"
+                number={gameLetterNumbers[el].index}
+                height="40px"
+                fontSize="10px"
+                numberSize="10px"
+                key={`hint-field-${i}`}
+                className={`data-hint-field-${HintIndex}`}
+                onChange={() => formatValues()}
+                {...props}
+            />
+        )
+    })
 }
 
 export default InputWords

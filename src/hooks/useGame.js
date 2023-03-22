@@ -7,6 +7,8 @@ const useGame = () => {
         gameSentence,
         gameWordLists,
         gameLetterNumbers,
+        gameUserInputs,
+        setGameUserInputs,
         setGameSentence,
         setGameLetterNumbers,
         setGameWordLists,
@@ -29,7 +31,7 @@ const useGame = () => {
 
     const restartGame = async () => {
         resetGame()
-        await startGame()
+        startGame()
     }
 
     return {
@@ -39,6 +41,8 @@ const useGame = () => {
         restartGame,
         startGame,
         isLoading,
+        gameUserInputs,
+        setGameUserInputs,
     }
 }
 

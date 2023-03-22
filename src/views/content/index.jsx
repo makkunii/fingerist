@@ -6,17 +6,27 @@ import useGame from '../../hooks/useGame'
 
 const Content = () => {
     const {
-        gameSentence,
         gameWordLists,
-        gameLetterNumbers,
         restartGame,
         isLoading,
+        gameUserInputs,
+        gameSentence,
         startGame,
     } = useGame()
 
     useEffect(() => {
         if (!gameWordLists || !gameWordLists) startGame()
     }, [gameSentence, gameWordLists])
+
+    /**
+     * This use effect is for checking purposes only
+     * It will logs user inputs for the sentence and hints
+     *
+     * will be removed soon.
+     */
+    useEffect(() => {
+        console.log(gameUserInputs)
+    }, [gameUserInputs])
 
     return (
         <Flex justifyContent="center">
@@ -30,10 +40,7 @@ const Content = () => {
                     mt="1.3rem"
                     mx="auto"
                 >
-                    <GuessSentence
-                        sentence={gameSentence}
-                        roundsNumbers={gameLetterNumbers}
-                    />
+                    <GuessSentence />
                 </Grid>
 
                 <Flex flexDirection="column">
@@ -62,8 +69,7 @@ const Content = () => {
                                     >
                                         <InputWords
                                             word={e.word}
-                                            roundsNumbers={gameLetterNumbers}
-                                            index={i}
+                                            HintIndex={i}
                                         />
                                     </Flex>
                                 </Grid>
