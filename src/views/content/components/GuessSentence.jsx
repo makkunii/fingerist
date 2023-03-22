@@ -1,8 +1,14 @@
+import { useEffect } from 'react'
 import { Box, Input } from '../../../components'
 import useGame from '../../../hooks/useGame'
 
 const GuessSentence = ({ ...props }) => {
-    const { gameLetterNumbers, gameSentence, setGameUserInputs } = useGame()
+    const {
+        gameLetterNumbers,
+        gameSentence,
+        setGameUserInputs,
+        gameUserInputs,
+    } = useGame()
 
     const formatValues = () => {
         let snapshot = ''
@@ -18,11 +24,12 @@ const GuessSentence = ({ ...props }) => {
     }
 
     return gameSentence?.split('')?.map((el, index) => {
+        const propValue = gameLetterNumbers[el]?.isFilled ? { value: el } : {}
+
         return el === ' ' ? (
             <Box />
         ) : (
             <Input
-                defaultValue=""
                 placeholder="?"
                 number={gameLetterNumbers[el].index}
                 height="40px"
@@ -32,6 +39,9 @@ const GuessSentence = ({ ...props }) => {
                 key={`sentence-${index}`}
                 className="data-sentence-field"
                 onChange={() => formatValues()}
+                disabled={gameLetterNumbers[el].isFilled}
+                isSuccess={gameLetterNumbers[el].isFilled}
+                {...propValue}
                 {...props}
             />
         )

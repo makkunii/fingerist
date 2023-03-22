@@ -18,16 +18,6 @@ const Content = () => {
         if (!gameWordLists || !gameWordLists) startGame()
     }, [gameSentence, gameWordLists])
 
-    /**
-     * This use effect is for checking purposes only
-     * It will logs user inputs for the sentence and hints
-     *
-     * will be removed soon.
-     */
-    useEffect(() => {
-        console.log(gameUserInputs)
-    }, [gameUserInputs])
-
     return (
         <Flex justifyContent="center">
             <Box>
