@@ -5,7 +5,7 @@ const InputWords = ({ word, HintIndex, ...props }) => {
     const { gameLetterNumbers, setGameUserInputs } = useGame()
 
     const formatValues = () => {
-        let snapshot = []
+        let snapshot = ''
 
         const inputs = document?.querySelectorAll(
             `.data-hint-field-${HintIndex}`,
@@ -19,6 +19,25 @@ const InputWords = ({ word, HintIndex, ...props }) => {
             userInputs: snapshot,
         })
     }
+
+
+    // const checkWord = () => {
+    //     if(userInputs.userInput != word) {
+    //         console.log("Wrong")
+    //         setwordStatus(false);
+
+    //     } 
+    //     else {
+    //         console.log("Correct")
+    //         setwordStatus(true);
+    //     }
+
+    // }
+
+    // useEffect(() => {
+    //     checkWord()
+    // }, [userInputs])
+   
 
     return word?.split('').map((el, i) => {
         return (
