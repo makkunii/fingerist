@@ -1,8 +1,11 @@
 import { userState, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Input } from '../../../components'
 
 const InputWords = ({ word, roundsNumbers, index, ...props }) => {
     const [ userInputs, setUserInputs] = useState([])
+    const [ wordStatus, setwordStatus] = useState(false)
+
 
     const formatValues = (id) => {
         let snapshot = []
@@ -11,13 +14,29 @@ const InputWords = ({ word, roundsNumbers, index, ...props }) => {
         
         inputs?.forEach( e => snapshot += `${e.value}`)
 
-        setUserInputs({
-            index : id,
-            userInputs : snapshot
-        })
+        const record = {index : id, userInput : snapshot}
+
+        setUserInputs(record)
+        
+    }
+    const checkWord = () => {
+        if(userInputs.userInput != word) {
+            console.log("Wrong")
+            setwordStatus(false);
+
+        } 
+        else {
+            console.log("Correct")
+            setwordStatus(true);
+        }
 
     }
 
+    useEffect(() => {
+        checkWord()
+    }, [userInputs])
+   
+    
     
     return (
         <>
@@ -29,6 +48,7 @@ const InputWords = ({ word, roundsNumbers, index, ...props }) => {
                         height="40px"
                         fontSize="10px"
                         numberSize="10px"
+                        isSuccess={wordStatus}
                         key={`hint-field-${i}`}
                         className={`data-hint-field-${index}`}
                         onChange={(evt) => {
