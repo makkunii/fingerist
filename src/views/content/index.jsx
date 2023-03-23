@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useRef, useEffect } from 'react';
 import { Box, Flex, Grid, Text } from '../../components'
 import InputWords from './components/InputWords'
 import GuessSentence from './components/GuessSentence'
@@ -21,14 +21,14 @@ const Content = () => {
     return (
         <Flex justifyContent="center">
             <Box>
-                <Text textAlign="center">GUESS THE SENTENCE</Text>
+                <Text textAlign="center" fontWeight="bold" fontSize="1.3rem" mt="1.5rem">GUESS THE SENTENCE</Text>
                 <Grid
                     gap="20px"
                     gridTemplateColumns="repeat(auto-fit, minmax(20px, 1fr))"
                     maxWidth="530px"
                     width="100%"
                     mt="1.3rem"
-                    mx="auto"
+                    mx="1rem"
                 >
                     <GuessSentence />
                 </Grid>
@@ -60,6 +60,7 @@ const Content = () => {
                                         <InputWords
                                             word={e.word}
                                             HintIndex={i}
+                                            setInputRef={(index, element) => setInputRef(i, index, element)}
                                         />
                                     </Flex>
                                 </Grid>
