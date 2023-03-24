@@ -91,7 +91,7 @@ export default createReducer(initialState, (builder) =>
         .addCase(resetGame, (state) => {
             state.sentence = null
             state.numbers = null
-            state.sentence = null
+            state.words_list = null
             state.userInputs = {
                 sentence: null,
                 wordlist: [],

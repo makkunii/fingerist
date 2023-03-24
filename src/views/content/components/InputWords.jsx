@@ -1,74 +1,63 @@
-import React, { useRef, useEffect } from 'react';
-import { Input } from '../../../components';
-import useGame from '../../../hooks/useGame';
+import { Input } from '../../../components'
+import useGame from '../../../hooks/useGame'
 
-const InputWords = ({ word, HintIndex, setInputRef, ...props }) => {
-  const { gameLetterNumbers, setGameUserInputs } = useGame();
+const InputWords = ({ word, HintIndex, ...props }) => {
+    const { gameLetterNumbers, setGameUserInputs } = useGame()
 
-  const formatValues = () => {
-    let snapshot = '';
+    const formatValues = (evt) => {
+        let snapshot = ''
 
-    const inputs = document?.querySelectorAll(`.data-hint-field-${HintIndex}`);
+        const inputs = document?.querySelectorAll(
+            `.data-hint-field-${HintIndex}`,
+        )
 
-    inputs?.forEach((e) => (snapshot += `${e.value}`));
+        inputs?.forEach((e) => (snapshot += `${e.value}`))
 
-    setGameUserInputs({
-      type: 'WORDLIST',
-      index: HintIndex,
-      userInputs: snapshot,
-    });
-  };
+        const indexOfTargetInput = Array.from(inputs).indexOf(evt.target)
 
-  const inputRefs = useRef([]);
+        const switchFocus = (i) => {
+            if (i + 1 < inputs.length) {
+                if (evt.target.value) {
+                    const nextInput = inputs[i + 1]
 
-  const handleKeyUp = (event, currentIndex) => {
-    const maxLength = event.target.maxLength;
-    const currentLength = event.target.value.length;
-    console.log(`handleKeyUp called for input ${currentIndex}`);
-    if (currentLength === maxLength) {
-      const nextIndex = currentIndex + 1;
-      console.log(`nextIndex = ${nextIndex}`);
-      console.log(inputRefs.current);
-      if (inputRefs.current[nextIndex]) {
-        console.log(`Setting focus to input ${nextIndex}`);
-        inputRefs.current[nextIndex].focus();
-      }
+                    if (nextInput.disabled) switchFocus(i + 1)
+                    else inputs[i + 1].focus()
+                }
+            }
+        }
+
+        switchFocus(indexOfTargetInput)
+
+        setGameUserInputs({
+            type: 'WORDLIST',
+            index: HintIndex,
+            userInputs: snapshot,
+        })
     }
-  };
 
-  useEffect(() => {
-    if (inputRefs.current[0]) {
-      inputRefs.current[0].focus();
-    }
-  }, []);
+    return word?.split('').map((el, i) => {
+        const propValue = gameLetterNumbers[el]?.isFilled ? { value: el } : {}
 
-  const setInputRefs = (rowIndex, inputRef) => {
-    inputRefs.current[rowIndex] = inputRef;
-  };
+        return (
+            <Input
+                placeholder="?"
+                number={gameLetterNumbers[el].index}
+                height="40px"
+                fontSize="10px"
+                numberSize="10px"
+                key={`hint-field-${i}`}
+                className={`data-hint-field-${HintIndex}`}
+                onChange={(evt) => {
+                    formatValues(evt)
+                }}
+                disabled={gameLetterNumbers[el].isFilled}
+                isSuccess={gameLetterNumbers[el].isFilled}
+                maxLength="1"
+                {...propValue}
+                {...props}
+            />
+        )
+    })
+}
 
-  return word?.split('').map((el, i) => {
-    const propValue = gameLetterNumbers[el]?.isFilled ? { value: el } : {};
-
-    return (
-      <Input
-        placeholder="?"
-        number={gameLetterNumbers[el].index}
-        height="40px"
-        fontSize="10px"
-        numberSize="10px"
-        key={`hint-field-${i}`}
-        className={`data-hint-field-${HintIndex}`}
-        onChange={() => formatValues()}
-        disabled={gameLetterNumbers[el].isFilled}
-        isSuccess={gameLetterNumbers[el].isFilled}
-        maxLength="1"
-        ref={(element) => setInputRefs(i, element)}
-          onKeyUp={(event) => handleKeyUp(event, i)}
-          {...propValue}
-          {...props}
-        />
-      );
-    });
-  };
-  
-  export default InputWords;
+export default InputWords
